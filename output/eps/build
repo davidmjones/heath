@@ -1,0 +1,27 @@
+#!/bin/bash
+
+export MPINPUTS=.:../../lib/metapost:
+
+mp="mpost -s 'outputformat=\"eps\"'"
+
+mpsrc=../../src/metapost
+
+if [ -z "$*" ]; then
+    mp_files="$mpsrc/*.mp"
+else
+    mp_files=$@
+fi
+
+for mp_file in $mp_files
+do
+    jobname=${mp_file##*/}
+    jobname=${jobname%.*}.mp
+
+    echo "$mp_file => $jobname"
+
+    eval $mp $mpsrc/$jobname
+    
+    echo ""
+done
+
+exit 0

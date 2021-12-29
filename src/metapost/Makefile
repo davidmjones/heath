@@ -1,11 +1,11 @@
+export MPINPUTS=.:../../lib/metapost:
+
 MPEPS=mpost -s 'outputformat="eps"'
 MPSVG=mpost -s 'outputformat="svg"'
 MPPNG=mpost -s 'outputformat="png"'
 
-%.eps : %.mp
+%.mps : %.mp
 	$(MPEPS) $<
-
-bookI : bookI.eps
 
 clean :
 	-rm *.log *.mpx *.mps *.svg *.png

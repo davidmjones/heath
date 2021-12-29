@@ -1,0 +1,20 @@
+#!/bin/bash
+
+ltxsrc=../../src/latex
+
+export TEXINPUTS=.:../../lib/tex:../eps:${ltxsrc}:
+
+if [ -z "$*" ]; then
+    tex_files=test
+else
+    tex_files=$@
+fi
+
+for tex_file in $tex_files
+do
+    xelatex $ltxsrc/$tex_file
+    
+    echo ""
+done
+
+exit 0
