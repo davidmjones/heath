@@ -73,10 +73,14 @@
 
 \newcommand{\?}{}
 
+\newcommand{\since}[1]{\unskip\nobreak~[#1]}
+
 \newcommand{\bc}{\textsc{b.c.}}
 \newcommand{\ad}{\@ifstar{\textsc{a.d\@.}}{\textsc{a.d.}}}
 
 \newcommand{\book}[1]{\textsc{#1}\@.}
+
+\newcommand{\prop}[2]{\textsc{\romannumeral#1}.~#2}
 
 \newcommand{\byline}[2]{%
 \begin{flushright}
@@ -85,6 +89,52 @@
 \begin{flushleft}
 #2
 \end{flushleft}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                                                  %%
+%%                           PROPOSITIONS                           %%
+%%                                                                  %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcounter{proposition}
+
+\newenvironment{proposition}{%
+    \par
+    \refstepcounter{proposition}%
+    \section*{Proposition~\theproposition}
+}{%
+    \par
+    \addvspace\medskipamount
+}
+
+\newenvironment{statement}{%
+    \par
+    \itshape
+}{%
+    \par
+    \addvspace\medskipamount
+}
+
+\renewenvironment{proof}{%
+    \par
+}{%
+    \par
+}
+
+\newenvironment{notes}{%
+    \par
+%    \Small
+}{%
+    \par
+}
+
+\newenvironment{commentary}{%
+    \par
+    \bigskip
+%    \small
+}{%
+    \par
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -126,8 +176,8 @@
         \interlinepenalty \@M
         \normalfont
         \huge
-        \textsc{\partname\enskip\thepart}\par
-        \vskip 5\p@
+%        \textsc{\partname\enskip\thepart}\par
+%        \vskip 5\p@
         \textsc{\lowercase{#2}}\par
     \endgroup
     \bigskip
