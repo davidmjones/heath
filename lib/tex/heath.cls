@@ -4,11 +4,19 @@
 
 \LoadClass[12pt]{amsbook}
 
+\RequirePackage{hyperref}
+
 \RequirePackage{graphicx}
 
 \RequirePackage{ifxetex}
 
 \RequireXeTeX
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                                                  %%
+%%                              FONTS                               %%
+%%                                                                  %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \RequirePackage{unicode-math}[2015/09/24]
 
@@ -57,6 +65,17 @@
 %     \do{30}{34}%        \Huge
 % }%
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                                                  %%
+%%                           MISC MACROS                            %%
+%%                                                                  %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\?}{}
+
+\newcommand{\bc}{\textsc{b.c.}}
+\newcommand{\ad}{\@ifstar{\textsc{a.d\@.}}{\textsc{a.d.}}}
+
 \newcommand{\book}[1]{\textsc{#1}\@.}
 
 \newcommand{\byline}[2]{%
@@ -66,6 +85,52 @@
 \begin{flushleft}
 #2
 \end{flushleft}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                                                  %%
+%%                            TITLEPAGE                             %%
+%%                                                                  %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\renewenvironment{titlepage}{%
+    \clearpage
+    \thispagestyle{empty}%
+    \phantomsection
+    \pdfbookmark[0]{Title page}{\@currentHref}%
+}{%
+    \if@restonecol\twocolumn \else \newpage \fi
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                                                  %%
+%%                    SECTIONING, HEADINGS, ETC.                    %%
+%%                                                                  %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\renewcommand\part{%
+    \@ifstar{\@dblarg\@part}{\cleardoublepage\@dblarg\@part}%
+}
+
+\def\@part[#1]#2{%
+    \thispagestyle{empty}%
+    \refstepcounter{part}%
+    \@stpelt{footnote}%
+    \addtocontents{toc}{\protect\contentsline{part}{#1}{\thepart}
+        {\@currentHref}%
+    }
+    \pdfbookmark[0]{#2}{\@currentHref}%
+%    \markall{#1}{#1}{}%
+    \begingroup
+        \centering
+        \interlinepenalty \@M
+        \normalfont
+        \huge
+        \textsc{\partname\enskip\thepart}\par
+        \vskip 5\p@
+        \textsc{\lowercase{#2}}\par
+    \endgroup
+    \bigskip
 }
 
 \endinput

@@ -5,7 +5,7 @@ ltxsrc=../../src/latex
 export TEXINPUTS=.:../../lib/tex:../eps:${ltxsrc}:
 
 if [ -z "$*" ]; then
-    tex_files=test
+    tex_files=vol1
 else
     tex_files=$@
 fi
