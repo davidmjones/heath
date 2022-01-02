@@ -7,7 +7,7 @@ beginfig(1)
   A = (0, 0);
   B = (r, 0);
 
-  draw line(A, B);
+  draw segment(A, B);
 
   path lcircle, rcircle;
   lcircle = circle(A, r);
@@ -18,8 +18,8 @@ beginfig(1)
 
   C = rcircle intersectionpoint lcircle;
 
-  draw line(A, C);
-  draw line(B, C);
+  draw segment(A, C);
+  draw segment(B, C);
 
   D = A - (r, 0);
   E = B + (r, 0);

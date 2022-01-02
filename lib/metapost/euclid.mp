@@ -10,16 +10,22 @@ else:
   fi
 fi
 
+defaultfont := "cmmi5";
+
 vardef circle(expr center, radius) =
   fullcircle scaled 2radius shifted center
 enddef;
 
-vardef line(expr A, B) =
+vardef segment(expr A, B) =
   A--B
 enddef;
 
 vardef triangle(expr A, B, C) =
   A--B--C--cycle
+enddef;
+
+vardef distance(expr P, Q) = 
+  (xpart P - xpart Q) ++ (ypart P - ypart Q)
 enddef;
 
 endinput;

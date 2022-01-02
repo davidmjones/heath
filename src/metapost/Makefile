@@ -7,5 +7,7 @@ MPPNG=mpost -s 'outputformat="png"'
 %.mps : %.mp
 	$(MPEPS) $<
 
+scratch: scratch.mps
+
 clean :
 	-rm *.log *.mpx *.mps *.svg *.png

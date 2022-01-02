@@ -1,14 +1,14 @@
 input euclid;
 
 beginfig(1)
-  r=100bp;
+  r=20bp;
 
   pair B, C, D, F, G, H, K;
 
   D = (-.75r, 0);
   F = ( 1.5r, 0);
 
-  draw line(D, F);
+  draw segment(D, F);
 
   B = .5[F, D];
 
@@ -20,7 +20,7 @@ beginfig(1)
   draw cir;
 
   path KF;
-  KF = line(K, F);
+  KF = segment(K, F);
 
   H = KF intersectionpoint cir;
 
@@ -29,11 +29,11 @@ beginfig(1)
   G = B + whatever * unitvector(H - B);
   G = K + whatever * (1, 0);
 
-  draw line(B, G);
+  draw segment(B, G);
 
   C = (K--G) intersectionpoint cir;
 
-  draw line(K, G);
+  draw segment(K, G);
 
   label.top(btex $B$ etex, B);
   label.lrt(btex $C$ etex, C);
