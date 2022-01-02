@@ -4,6 +4,7 @@
 
 \LoadClass[12pt]{amsbook}
 
+\RequirePackage{textcmds}
 \RequirePackage{hyperref}
 
 \RequirePackage{graphicx}
@@ -71,16 +72,25 @@
 %%                                                                  %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\newcommand{\?}{}
+\newcommand{\?}[1][]{}
 
-\newcommand{\since}[1]{\unskip\nobreak~[#1]}
+\def\r{\afterassignment\lower@roman\count@}
+\def\lower@roman{\textsc{\romannumeral\count@}}
 
-\newcommand{\bc}{\textsc{b.c.}}
-\newcommand{\ad}{\@ifstar{\textsc{a.d\@.}}{\textsc{a.d.}}}
+\newcommand{\ibid}{\emph{ibid}.}
 
 \newcommand{\book}[1]{\textsc{#1}\@.}
 
 \newcommand{\prop}[2]{\textsc{\romannumeral#1}.~#2}
+
+\newcommand{\since}[1]{\unskip\nobreak~[#1]}
+
+% TBD: check for following .
+
+\newcommand{\bc}{\textsc{b.c.}}
+\newcommand{\ad}{\@ifstar{\textsc{a.d\@.}}{\textsc{a.d.}}}
+
+\DeclareMathOperator{\arc}{arc}
 
 \newcommand{\byline}[2]{%
 \begin{flushright}
@@ -90,6 +100,8 @@
 #2
 \end{flushleft}
 }
+
+\newcommand{\ZMP}{Zeitschrift für Math.\ u.\ Physik}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%                                                                  %%
