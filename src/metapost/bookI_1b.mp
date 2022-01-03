@@ -8,7 +8,7 @@ beginfig(1)
   A = (0, 0);
   B = (r, 0);
 
-  draw segment(A, B);
+  draw A--B;
 
   path lcircle, rcircle;
 
@@ -22,10 +22,10 @@ beginfig(1)
 
   D = .55[A, C];
 
-  draw segment (A, C);
+  draw A--C;
 
   path BD;
-  BD = segment(B, D);
+  BD = B--D;
 
   draw BD;
 

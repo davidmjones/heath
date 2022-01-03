@@ -16,9 +16,9 @@ beginfig(1)
   drawdot B;
   drawdot C;
 
-  draw segment(B, C);
+  draw B--C;
 
-  draw segment(A, B);
+  draw A--B;
 
   D = A + ab * (unitvector(B - A) rotated 60);
 
@@ -31,8 +31,8 @@ beginfig(1)
 
   path DE, DF;
 
-  DE = segment(D, E);
-  DF = segment(D, F);
+  DE = D--E;
+  DF = D--F;
 
   draw DE;
   draw DF;
@@ -50,7 +50,7 @@ beginfig(1)
 
   draw GKL;
 
-  draw segment(D, G);
+  draw D--G;
   
   L = GKL intersectionpoint DE;
 

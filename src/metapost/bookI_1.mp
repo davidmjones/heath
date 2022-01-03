@@ -3,24 +3,28 @@ input euclid;
 beginfig(1)
   r=1cm;
 
-  pair A, B, C, D, E;
+  pair A, B;
+
   A = (0, 0);
   B = (r, 0);
 
-  draw segment(A, B);
+  draw A--B;
 
-  path lcircle, rcircle;
-  lcircle = circle(A, r);
-  rcircle = circle(B, r);
+  path BCD, ACE;
 
-  draw lcircle;
-  draw rcircle;
+  BCD = circle(A, r);
+  ACE = circle(B, r);
 
-  C = rcircle intersectionpoint lcircle;
+  draw BCD;
+  draw ACE;
 
-  draw segment(A, C);
-  draw segment(B, C);
+  pair C;
+  C = ACE intersectionpoint BCD;
 
+  draw A--C;
+  draw B--C;
+
+  pair D, E;
   D = A - (r, 0);
   E = B + (r, 0);
 

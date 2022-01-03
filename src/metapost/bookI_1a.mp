@@ -8,7 +8,7 @@ beginfig(1)
   A = (0, 0);
   B = (r, 0);
 
-  draw segment(A, B);
+  draw A--B;
 
   path lcircle[], rcircle[];
 
@@ -23,7 +23,7 @@ beginfig(1)
   D = A - (r, 0);
   E = B + (r, 0);
 
-  draw segment(D, E);
+  draw D--E;
 
   lcircle2 = circle(A, 2r);
   rcircle2 = circle(B, 2r);
@@ -33,8 +33,8 @@ beginfig(1)
 
   F = rcircle2 intersectionpoint lcircle2;
 
-  draw segment(A, F);
-  draw segment(B, F);
+  draw A--F;
+  draw B--F;
 
   label.lft("A", A shifted ( 3, -5));
   label.rt ("B", B shifted (-3, -5));

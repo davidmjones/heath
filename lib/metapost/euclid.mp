@@ -20,12 +20,8 @@ vardef circle(expr center, radius) =
   fullcircle scaled 2radius shifted center
 enddef;
 
-vardef segment(expr A, B) =
-  A--B
-enddef;
-
 vardef ray(expr A, B) =
-  segment(A, A + 1000 * unitvector(B - A))
+  A--(A + 1000 * unitvector(B - A))
 enddef;
 
 vardef triangle(expr A, B, C) =

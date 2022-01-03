@@ -8,7 +8,7 @@ beginfig(1)
   D = (-.75r, 0);
   F = ( 1.5r, 0);
 
-  draw segment(D, F);
+  draw D--F;
 
   B = .5[F, D];
 
@@ -20,7 +20,7 @@ beginfig(1)
   draw cir;
 
   path KF;
-  KF = segment(K, F);
+  KF = K--F;
 
   H = KF intersectionpoint cir;
 
@@ -29,11 +29,11 @@ beginfig(1)
   G = B + whatever * unitvector(H - B);
   G = K + whatever * (1, 0);
 
-  draw segment(B, G);
+  draw B--G;
 
   C = (K--G) intersectionpoint cir;
 
-  draw segment(K, G);
+  draw K--G;
 
   label.top("B", B);
   label.lrt("C", C);
