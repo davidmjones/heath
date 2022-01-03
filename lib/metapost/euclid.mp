@@ -11,6 +11,7 @@ else:
 fi
 
 defaultfont := "cmmi5";
+labeloffset := 1.5;
 
 boolean drawDots;
 drawDots := true;
