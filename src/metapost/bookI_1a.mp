@@ -1,43 +1,49 @@
 input euclid;
 
 beginfig(1)
-  r=1cm;
+  ab = 36bp;
 
-  pair A, B, C, D, E, F;
+  pair A, B;
 
-  A = (0, 0);
-  B = (r, 0);
+  A = origin;
+  B = A + ab * right;
 
   draw A--B;
 
-  path lcircle[], rcircle[];
+  path ACE, BCD;
 
-  lcircle1 = circle(A, r);
-  rcircle1 = circle(B, r);
+  BCD = circle(A, ab);
+  ACE = circle(B, ab);
 
-  draw lcircle1;
-  draw rcircle1;
+  draw BCD;
+  draw ACE;
 
-  C = rcircle1 intersectionpoint lcircle1;
+  pair C, D, E;
 
-  D = A - (r, 0);
-  E = B + (r, 0);
+  C = ACE intersectionpoint BCD;
+
+  D = A + ab * left;
+  E = B + ab * right;
 
   draw D--E;
 
-  lcircle2 = circle(A, 2r);
-  rcircle2 = circle(B, 2r);
+  path EFx, DFx;
 
-  draw lcircle2;
-  draw rcircle2;
+  EFx = circle(A, 2ab);
+  DFx = circle(B, 2ab);
 
-  F = rcircle2 intersectionpoint lcircle2;
+  draw EFx;
+  draw DFx;
+
+  pair F;
+
+  F = DFx intersectionpoint EFx;
 
   draw A--F;
   draw B--F;
 
-  label.lft("A", A shifted ( 3, -5));
-  label.rt ("B", B shifted (-3, -5));
+  label.llft("A", A);
+  label.lrt ("B", B);
   label.top("C", C);
   label.lft("D", D);
   label.rt ("E", E);

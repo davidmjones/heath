@@ -6,25 +6,23 @@ beginfig(1)
   bc = 30;
   ab = 15;
 
-  pair A, B, C, D, E, F, G, H, K, L;
+  pair A, B, C;
 
   A = origin;
-  B = A + ab * ((1, 0) rotated 30);
-  C = B + bc * (0, 1);
-
-  drawdot A;
-  drawdot B;
-  drawdot C;
+  B = A + ab * dir 30;
+  C = B + bc * up;
 
   draw B--C;
 
   draw A--B;
 
+  pair D;
+
   D = A + ab * (unitvector(B - A) rotated 60);
 
-  drawdot D;
-
   draw triangle(A, B, D);
+
+  pair E, F;
 
   E = D + 1.2 * (ab + bc) * unitvector(A - D);
   F = D + 1.2 * (ab + bc) * unitvector(B - D);
@@ -41,10 +39,10 @@ beginfig(1)
 
   CGH = circle(B, bc);
 
+  pair G;
   G = CGH intersectionpoint DF;
 
   draw CGH;
-  drawdot G;
 
   GKL = circle(D, ab + bc);
 
@@ -52,18 +50,19 @@ beginfig(1)
 
   draw D--G;
   
-  L = GKL intersectionpoint DE;
+  pair H, K, L;
 
   H = CGH intersectionpoint ray(B, D);
   K = GKL intersectionpoint ray(B, D);
+  L = GKL intersectionpoint DE;
 
   label.lft("A", A);
-  label.rt ("B", B);
+  label.rt ("B", B shifted 1.5up);
   label.top("C", C);
   label.top("D", D);
   label.bot("E", E);
   label.rt("F", F);
-  label.rt ("G", G);
+  label.rt ("G", G shifted up);
   label.lft("H", H);
   label.lft("K", K);
   label.llft("L", L);

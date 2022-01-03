@@ -1,33 +1,38 @@
 input euclid;
 
 beginfig(1)
-  r=1cm;
+  ab = 36bp;
 
-  pair A, B, C, D, E;
+  pair A, B;
 
-  A = (0, 0);
-  B = (r, 0);
+  A = origin;
+  B = A + ab * right;
 
   draw A--B;
 
   path lcircle, rcircle;
 
-  lcircle = circle(A, r);
-  rcircle = circle(B, r);
+  lcircle = circle(A, ab);
+  rcircle = circle(B, ab);
 
   draw lcircle;
   draw rcircle;
 
-  C = A + (0, r) rotated 30;
+  pair C, D;
+
+  C = A + ab * dir 120;
 
   D = .55[A, C];
 
   draw A--C;
 
   path BD;
+
   BD = B--D;
 
   draw BD;
+
+  pair E;
 
   E = rcircle intersectionpoint BD;
 
@@ -35,7 +40,7 @@ beginfig(1)
   label.rt ("B", B);
   label.top("C", C);
   label.lft("D", D);
-  label.top("E", E);
+  label.urt("E", E shifted down);
 
   drawdots(A, B, C, D, E);
 endfig;

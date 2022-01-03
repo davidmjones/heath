@@ -1,37 +1,47 @@
 input euclid;
 
 beginfig(1)
-  r=20bp;
+  r = 20bp;
 
-  pair B, C, D, F, G, H, K;
+  pair D, F;
 
   D = (-.75r, 0);
   F = ( 1.5r, 0);
 
   draw D--F;
 
+  pair B, K;
+
   B = .5[F, D];
 
-  K = B shifted (0, -r);
+  K = B + r * down;
 
-  path cir;
-  cir = circle(K, r);
+  path CBx;
 
-  draw cir;
+  CBx = circle(K, r);
+
+  draw CBx;
 
   path KF;
+
   KF = K--F;
 
-  H = KF intersectionpoint cir;
+  pair H;
+
+  H = KF intersectionpoint CBx;
 
   draw KF;
 
+  pair G;
+
   G = B + whatever * unitvector(H - B);
-  G = K + whatever * (1, 0);
+  G = K + whatever * right;
 
   draw B--G;
 
-  C = (K--G) intersectionpoint cir;
+  pair C;
+
+  C = (K--G) intersectionpoint CBx;
 
   draw K--G;
 

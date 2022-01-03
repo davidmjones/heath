@@ -1,19 +1,19 @@
 input euclid;
 
 beginfig(1)
-  r=1cm;
+  ab = 36bp;
 
   pair A, B;
 
-  A = (0, 0);
-  B = (r, 0);
+  A = origin;
+  B = A + ab * right;
 
   draw A--B;
 
-  path BCD, ACE;
+  path ACE, BCD;
 
-  BCD = circle(A, r);
-  ACE = circle(B, r);
+  BCD = circle(A, ab);
+  ACE = circle(B, ab);
 
   draw BCD;
   draw ACE;
@@ -25,8 +25,9 @@ beginfig(1)
   draw B--C;
 
   pair D, E;
-  D = A - (r, 0);
-  E = B + (r, 0);
+
+  D = A + ab * left;
+  E = B + ab * right;
 
   label.lft("A", A);
   label.rt ("B", B);
