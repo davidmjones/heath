@@ -9,6 +9,8 @@
 
 \RequirePackage{graphicx}
 
+\RequirePackage{verbatim}
+
 \RequirePackage{ifxetex}
 
 \RequireXeTeX
@@ -102,6 +104,20 @@
 }
 
 \newcommand{\ZMP}{Zeitschrift für Math.\ u.\ Physik}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                                                  %%
+%%                             FIGURES                              %%
+%%                                                                  %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\RequirePackage{wrapfig}
+
+\newcommand{\sidefig}[2][r]{%
+    \begin{wrapfigure}{#1}{0pt}
+    \includegraphics{#2}
+    \end{wrapfigure}
+}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%                                                                  %%
