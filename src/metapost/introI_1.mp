@@ -35,23 +35,15 @@ beginfig(1)
 
   draw segment(K, G);
 
-  label.top(btex $B$ etex, B);
-  label.lrt(btex $C$ etex, C);
-  label.top(btex $D$ etex, D);
-  label.top(btex $F$ etex, F);
-  label.rt (btex $G$ etex, G);
-  label.bot(btex $H$ etex, H);
-  label.bot(btex $K$ etex, K);
+  label.top("B", B);
+  label.lrt("C", C);
+  label.top("D", D);
+  label.top("F", F);
+  label.rt ("G", G);
+  label.bot("H", H);
+  label.bot("K", K);
 
-  pickup pencircle scaled 2pt;
-
-  drawdot B;
-  drawdot C;
-  drawdot D;
-  drawdot F;
-  drawdot G;
-  drawdot H;
-  drawdot K;
+  drawdots(B, C, D, F, G, H, K);
 endfig;
 
 end;

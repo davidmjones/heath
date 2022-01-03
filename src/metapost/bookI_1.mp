@@ -24,11 +24,13 @@ beginfig(1)
   D = A - (r, 0);
   E = B + (r, 0);
 
-  label.lft(btex $A$ etex, A);
-  label.rt (btex $B$ etex, B);
-  label.top(btex $C$ etex, C);
-  label.lft(btex $D$ etex, D);
-  label.rt (btex $E$ etex, E);
+  label.lft("A", A);
+  label.rt ("B", B);
+  label.top("C", C);
+  label.lft("D", D);
+  label.rt ("E", E);
+
+  drawdots(A, B, C, D, E);
 endfig;
 
 end;

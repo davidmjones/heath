@@ -31,20 +31,13 @@ beginfig(1)
 
   E = rcircle intersectionpoint BD;
 
-  label.lft(btex $A$ etex, A);
-  label.rt (btex $B$ etex, B);
-  label.top(btex $C$ etex, C);
-  label.lft(btex $D$ etex, D);
-  label.top(btex $E$ etex, E);
+  label.lft("A", A);
+  label.rt ("B", B);
+  label.top("C", C);
+  label.lft("D", D);
+  label.top("E", E);
 
-  pickup pencircle scaled 2pt;
-
-  drawdot A;
-  drawdot B;
-  drawdot C;
-  drawdot D;
-  drawdot E;
-
+  drawdots(A, B, C, D, E);
 endfig;
 
 end;

@@ -36,22 +36,14 @@ beginfig(1)
   draw segment(A, F);
   draw segment(B, F);
 
-  label.lft(btex $A$ etex, A shifted ( 3, -5));
-  label.rt (btex $B$ etex, B shifted (-3, -5));
-  label.top(btex $C$ etex, C);
-  label.lft(btex $D$ etex, D);
-  label.rt (btex $E$ etex, E);
-  label.top(btex $F$ etex, F);
+  label.lft("A", A shifted ( 3, -5));
+  label.rt ("B", B shifted (-3, -5));
+  label.top("C", C);
+  label.lft("D", D);
+  label.rt ("E", E);
+  label.top("F", F);
 
-  pickup pencircle scaled 2pt;
-
-  drawdot A;
-  drawdot B;
-  drawdot C;
-  drawdot D;
-  drawdot E;
-  drawdot F;
-
+  drawdots(A, B, C, D, E, F);
 endfig;
 
 end;

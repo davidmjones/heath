@@ -4,7 +4,7 @@ MPEPS=mpost -s 'outputformat="eps"'
 MPSVG=mpost -s 'outputformat="svg"'
 MPPNG=mpost -s 'outputformat="png"'
 
-%.mps : %.mp
+%.mps : %.mp ../../lib/metapost/euclid.mp
 	$(MPEPS) $<
 
 scratch: scratch.mps

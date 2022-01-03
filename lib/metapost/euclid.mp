@@ -12,12 +12,19 @@ fi
 
 defaultfont := "cmmi5";
 
+boolean drawDots;
+drawDots := true;
+
 vardef circle(expr center, radius) =
   fullcircle scaled 2radius shifted center
 enddef;
 
 vardef segment(expr A, B) =
   A--B
+enddef;
+
+vardef ray(expr A, B) =
+  segment(A, A + 1000 * unitvector(B - A))
 enddef;
 
 vardef triangle(expr A, B, C) =
@@ -27,5 +34,15 @@ enddef;
 vardef distance(expr P, Q) = 
   (xpart P - xpart Q) ++ (ypart P - ypart Q)
 enddef;
+
+vardef drawdots(text list) = 
+  if drawDots:
+    pickup pencircle scaled 2pt;
+
+    for x = list:
+      drawdot x;
+    endfor
+  fi
+enddef
 
 endinput;
