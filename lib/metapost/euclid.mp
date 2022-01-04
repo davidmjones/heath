@@ -67,9 +67,12 @@ def draw_mark(expr p, a) =
     t = arctime a of p;
 
     dm = mark_size * unitvector direction t of p rotated markangle;
+
     draw (-.5dm .. .5dm) shifted point t of p;
   endgroup
 enddef;
+
+picture mark_pattern;
 
 def draw_marked(expr p, n) =
   begingroup
@@ -81,7 +84,7 @@ def draw_marked(expr p, n) =
       draw_mark(p, amid + .6 mark_size * i);
     endfor
 
-    draw p;
+    draw p if known mark_pattern: dashed mark_pattern fi;
   endgroup
 enddef;
 
@@ -92,11 +95,16 @@ angle_radius=8pt;
 
 def mark_angle(expr a, b, c, n) =
   begingroup
-    save s, p; path p;
+    save s, p;
+
+    path p;
 
     p = unitvector(a-b){(a-b) rotated 90}..unitvector(c-b);
+
     s = .9 mark_size/length(point 1 of p - point 0 of p);
+
     if s < angle_radius: s := angle_radius; fi
+
     draw_marked(p scaled s shifted b, n);
   endgroup
 enddef;
