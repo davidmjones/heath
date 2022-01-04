@@ -48,6 +48,61 @@ vardef drawdots(text list) =
       drawdot dot;
     endfor
   fi
-enddef
+enddef;
+
+% MetaPost: A User's Manual (May 21, 2014), Figure 47
+
+numeric mark_size;
+mark_size = 4pt;
+
+% Change angle of mark from 90 to 120
+
+numeric markangle;
+markangle = 120;
+
+def draw_mark(expr p, a) =
+  begingroup
+    save t, dm; pair dm;
+
+    t = arctime a of p;
+
+    dm = mark_size * unitvector direction t of p rotated markangle;
+    draw (-.5dm .. .5dm) shifted point t of p;
+  endgroup
+enddef;
+
+def draw_marked(expr p, n) =
+  begingroup
+    save amid;
+
+    amid = .5 * arclength p;
+
+    for i=-(n-1)/2 upto (n-1)/2:
+      draw_mark(p, amid + .6 mark_size * i);
+    endfor
+
+    draw p;
+  endgroup
+enddef;
+
+% MetaPost: A User's Manual (May 21, 2014), Figure 48
+
+numeric angle_radius;
+angle_radius=8pt;
+
+def mark_angle(expr a, b, c, n) =
+  begingroup
+    save s, p; path p;
+
+    p = unitvector(a-b){(a-b) rotated 90}..unitvector(c-b);
+    s = .9 mark_size/length(point 1 of p - point 0 of p);
+    if s < angle_radius: s := angle_radius; fi
+    draw_marked(p scaled s shifted b, n);
+  endgroup
+enddef;
+
+def mark_rt_angle(expr a, b, c) =
+  draw ((1,0)--(1,1)--(0,1)) zscaled (angle_radius * unitvector(a-b)) shifted b
+enddef;
 
 endinput;

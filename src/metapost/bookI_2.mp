@@ -12,7 +12,13 @@ beginfig(1)
   B = A + ab * dir 30;
   C = B + bc * up;
 
-  draw B--C;
+  path BC;
+
+  BC = B--C;
+
+  draw BC;
+
+  draw_marked(BC, 1);
 
   draw A--B;
 
