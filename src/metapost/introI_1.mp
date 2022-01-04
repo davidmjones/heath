@@ -1,5 +1,7 @@
 input euclid;
 
+% p. 11, footnote 1
+
 beginfig(1)
   r = 20bp;
 
