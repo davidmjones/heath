@@ -11,6 +11,8 @@
 
 \RequirePackage{verbatim}
 
+\RequirePackage{float}
+
 \RequirePackage{ifxetex}
 
 \RequireXeTeX
@@ -105,6 +107,13 @@
 
 \newcommand{\ZMP}{Zeitschrift für Math.\ u.\ Physik}
 
+\def\macrotext{\expandafter\strip@prefix\meaning}
+
+\def\vdef#1#2{%
+    \def#1{#2}%
+    \edef#1{\macrotext#1}%
+}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%                                                                  %%
 %%                             FIGURES                              %%
@@ -115,7 +124,12 @@
 
 \newcommand{\sidefig}[2][r]{%
     \begin{wrapfigure}{#1}{0pt}
-    \includegraphics{#2}
+    \IfFileExists{#2.mps}{%
+        \includegraphics{#2}%
+    }{%
+        \vdef\@tempa{#2}%
+        \fbox{figure \texttt{\@tempa}}%
+    }
     \end{wrapfigure}
 }
 
