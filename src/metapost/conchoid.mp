@@ -2,16 +2,30 @@ input euclid;
 
 % p. 160
 
-beginfig(1)
-  b = 18bp;
-  a = 36bp;
+numeric conchoid_step_size;
+conchoid_step_size := 10;
 
-  numeric limit;
-  limit = 100;
+vardef conchoid_point(expr pole, a, b, x) =
+  (pole + ((b ++ x) + a) * unitvector((x, 0) - pole))
+enddef;
 
-  path base;
+vardef conchoid_branch(expr pole, a, b, min_x, max_x) =
+  pair start;
 
-  base = (-limit, 0)--(limit, 0);
+  start = conchoid_point(pole, a, b, min_x);
+  
+  draw start
+    for i = (min_x + conchoid_step_size) step conchoid_step_size until max_x:
+    ..conchoid_point(pole, a, b, i)
+  endfor;
+enddef;
+
+vardef conchoid(expr a, b, min_x, max_x) =
+  path axis;
+
+  axis = (min_x, 0)--(max_x, 0);
+
+  draw axis;
 
   pair pole;
 
@@ -19,19 +33,19 @@ beginfig(1)
 
   drawdot pole;
 
-  draw base;
+  conchoid_branch(pole, a, b, min_x, max_x);
 
-  pair start;
+  conchoid_branch(pole, -a, b, min_x, max_x);
+enddef;
 
-  numeric bound;
-  bound = 70;
+beginfig(1)
+  b = 18bp;
+  a = 36bp;
 
-  start = pole + ((b ++ bound) + a) * unitvector((-bound, 0) - pole);
+  numeric limit;
+  limit = 100;
 
-  draw start
-  for i = (-bound + 10) step 10 until bound:
-    ..(pole + ((b ++ i) + a) * unitvector((i, 0) - pole))
-  endfor;
+  conchoid(a, b, -limit, limit);
 endfig;
 
 end;
