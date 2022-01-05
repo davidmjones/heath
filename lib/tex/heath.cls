@@ -86,6 +86,7 @@
 \newcommand{\book}[1]{\textsc{#1}\@.}
 
 \newcommand{\prop}[2]{\textsc{\romannumeral#1}.~#2}
+\newcommand{\scholia}[2]{\textsc{\romannumeral#1}.~#2}
 
 \newcommand{\since}[1]{\unskip\nobreak~[#1]}
 
@@ -113,6 +114,8 @@
     \def#1{#2}%
     \edef#1{\macrotext#1}%
 }
+
+\renewcommand{\pageref}[1]{[[#1]]}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%                                                                  %%
