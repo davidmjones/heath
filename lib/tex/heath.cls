@@ -79,7 +79,7 @@
 \newcommand{\?}[1][]{}
 
 \def\r{\afterassignment\lower@roman\count@}
-\def\lower@roman{\textsc{\romannumeral\count@}}
+\def\lower@roman{\textup{\textsc{\romannumeral\count@}}}
 
 \newcommand{\ibid}{\emph{ibid}.}
 
