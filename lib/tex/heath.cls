@@ -76,6 +76,10 @@
 %%                                                                  %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\RequirePackage{xspace}
+
+\newcommand{\clause}{\xspace}
+
 \newcommand{\?}[1][]{}
 
 \def\r{\afterassignment\lower@roman\count@}
@@ -115,7 +119,7 @@
     \edef#1{\macrotext#1}%
 }
 
-\renewcommand{\pageref}[1]{[[#1]]}
+\AtBeginDocument{\renewcommand{\pageref}[1]{[[#1]]}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%                                                                  %%
