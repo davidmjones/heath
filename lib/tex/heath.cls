@@ -25,7 +25,9 @@
 
 \RequirePackage{unicode-math}[2015/09/24]
 
-\newfontfamily{\greek}{Brill}
+%TODO: Should always choose upright
+\newfontfamily{\@greek}{Brill}
+\newcommand{\greek}[1]{\@greek{\textup{#1}}}
 
 \setmainfont{STIX Two Text}[%
     Script=Default,

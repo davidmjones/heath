@@ -27,13 +27,13 @@ vardef conchoid_branch(expr pole, a, b, min_x, max_x) =
 enddef;
 
 vardef conchoid(expr a, b, min_x, max_x) =
-  save axis, pole, top_branch, ray, midpoint;
+  save base, pole, top_branch, ray, midpoint;
 
-  path axis;
+  path base;
 
-  axis = (min_x, 0)--(max_x, 0);
+  base = (min_x, 0)--(max_x, 0);
 
-  draw axis;
+  draw base;
 
   pair pole;
 
@@ -57,7 +57,7 @@ vardef conchoid(expr a, b, min_x, max_x) =
     ray := (0, -1.25b)--(0, 1.2 * a + b/(cosd theta));
     ray := ray rotated -theta shifted pole;
     draw ray;
-    midpoint := .5[ray intersectionpoint axis, ray intersectionpoint top_branch];
+    midpoint := .5[ray intersectionpoint base, ray intersectionpoint top_branch];
     label.rt("a", midpoint);
   endfor;
 

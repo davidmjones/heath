@@ -17,6 +17,10 @@ boolean drawDots;
 drawDots := false;
 % drawDots := true;
 
+pickup pencircle scaled 1bp;  % set default line width
+defaultpen := savepen;
+
+
 vardef circle(expr center, radius) =
   fullcircle scaled 2radius shifted center
 enddef;
@@ -29,7 +33,7 @@ enddef;
 % overflow.
 
 vardef ray(expr A, B) =
-  A--(A + 1024 * unitvector(B - A))
+  (A--(A + 1024 * unitvector(B - A)))
 enddef;
 
 vardef triangle(expr A, B, C) =
