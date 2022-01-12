@@ -54,8 +54,6 @@ beginfig(1)
   label.rt ("G", G);
   label.bot("H", H);
   label.bot("K", K);
-
-  drawdots(B, C, D, F, G, H, K);
 endfig;
 
 end;

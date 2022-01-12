@@ -70,8 +70,6 @@ beginfig(1)
 
   label.lrt ("C", A shifted 3right);
   label.llft("D", B shifted 3left);
-
-  % drawdots(A, B, C, D, E, F);
 endfig;
 
 end;

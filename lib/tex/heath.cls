@@ -91,7 +91,23 @@
 
 \newcommand{\book}[1]{\textsc{#1}\@.}
 
-\newcommand{\prop}[2]{\textsc{\romannumeral#1}.~#2}
+\newif\ifst@rred
+
+\def\maybe@st@rred#1{%
+    \@ifstar{\st@rredtrue#1}{\st@rredfalse#1}%
+}
+
+% TBD: Implement \prop*
+
+\newcommand{\prop}{\maybe@st@rred\@prop}
+
+\newcommand{\@prop}[2]{%
+    \ifst@rred\else
+        \textsc{\romannumeral#1}.~%
+    \fi
+    #2%
+}
+
 \newcommand{\scholia}[2]{\textsc{\romannumeral#1}.~#2}
 
 \newcommand{\since}[1]{\unskip\nobreak~[#1]}
@@ -147,6 +163,8 @@
 %%                           PROPOSITIONS                           %%
 %%                                                                  %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newtheorem*{lemma*}{Lemma}
 
 \newcounter{proposition}
 

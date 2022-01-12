@@ -36,9 +36,6 @@ beginfig(1)
   label.top("D", D shifted left);
   label.urt("E", E);
   label.rt("F", F);
-
-  drawdots(A, B, C, D, E, F);
-
 endfig;
 
 end;

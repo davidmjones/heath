@@ -14,15 +14,22 @@ defaultfont := "cmmi5";
 labeloffset := 1.5;
 
 boolean drawDots;
-drawDots := false;
-% drawDots := true;
+% drawDots := false;
+drawDots := true;
 
 pickup pencircle scaled 1bp;  % set default line width
 defaultpen := savepen;
 
+numeric phi;
+
+phi = (1 + sqrt(5))/2;
 
 vardef circle(expr center, radius) =
   fullcircle scaled 2radius shifted center
+enddef;
+
+vardef semicircle(expr center, radius) =
+  (halfcircle scaled 2radius shifted center)
 enddef;
 
 % A line segment starting at A and continuing indefinitely in the
@@ -46,11 +53,17 @@ enddef;
 
 vardef drawdots(text list) = 
   if drawDots:
+    save savedpen;
+    pen savedpen;
+    savedpen := currentpen;
+
     pickup pencircle scaled 2pt;
 
     for dot = list:
       drawdot dot;
     endfor
+
+    pickup savedpen;
   fi
 enddef;
 

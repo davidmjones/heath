@@ -36,8 +36,6 @@ beginfig(1)
   label.bot("D", D);
   label.bot("E", E);
   label.top("F", F);
-
-  drawdots(A, B, C, D, E, F);
 endfig;
 
 end;

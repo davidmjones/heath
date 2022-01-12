@@ -48,8 +48,6 @@ beginfig(1)
   label.lft("D", D);
   label.rt ("E", E);
   label.top("F", F);
-
-  drawdots(A, B, C, D, E, F);
 endfig;
 
 end;

@@ -72,9 +72,6 @@ beginfig(1)
   label.lft("H", H);
   label.lft("K", K);
   label.llft("L", L);
-
-  drawdots(A, B, C, D, G, L);
-
 endfig;
 
 end;
