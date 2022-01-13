@@ -24,6 +24,8 @@ numeric phi;
 
 phi = (1 + sqrt(5))/2;
 
+def dashedline(expr p) = draw p dashed withdots scaled .25 enddef;
+
 vardef circle(expr center, radius) =
   fullcircle scaled 2radius shifted center
 enddef;

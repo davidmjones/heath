@@ -9,6 +9,8 @@
 
 \RequirePackage{graphicx}
 
+\RequirePackage{enumerate}
+
 \RequirePackage{verbatim}
 
 \RequirePackage{float}
@@ -165,6 +167,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \newtheorem*{lemma*}{Lemma}
+\newtheorem*{porism*}{Porism}
 
 \newcounter{proposition}
 

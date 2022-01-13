@@ -11,7 +11,7 @@ beginfig(1)
   ac = .9u;
   bc = .7u;
 
-  pair A, B, C, D, H;
+  pair A, B, C, D;
 
   B = origin;
   C = B + ab * right;
