@@ -17,7 +17,7 @@
 
 \RequirePackage{ifxetex}
 
-\RequireXeTeX
+%\RequireXeTeX
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%                                                                  %%
@@ -82,7 +82,7 @@
 
 \RequirePackage{xspace}
 
-\newcommand{\clause}{\xspace}
+\newcommand{\clause}{\newline}
 
 \newcommand{\?}[1][]{}
 
@@ -90,6 +90,18 @@
 \def\lower@roman{\textup{\textsc{\romannumeral\count@}}}
 
 \newcommand{\ibid}{\emph{ibid}.}
+
+\renewcommand{\qedsymbol}{\textsc{q.e.d.\xspace}}
+
+\newcommand{\qefsymbol}{\textsc{q.e.f.\xspace}}
+
+\def\useqed{\def\qedsymbol}
+
+\def\noqed{\useqed{}}
+
+\def\qef{\useqed{\qefsymbol}}
+
+\newcommand{\emend}[2]{#2}
 
 \newcommand{\book}[1]{\textsc{#1}\@.}
 
@@ -99,20 +111,76 @@
     \@ifstar{\st@rredtrue#1}{\st@rredfalse#1}%
 }
 
-% TBD: Implement \prop*
-
-\newcommand{\prop}{\maybe@st@rred\@prop}
+\DeclareRobustCommand{\prop}{\maybe@st@rred\@prop}
 
 \newcommand{\@prop}[2]{%
-    \ifst@rred\else
-        \textsc{\romannumeral#1}.~%
-    \fi
-    #2%
+    \begingroup
+        \hyperref[prop:\@Roman#1_\number#2]{%
+            \ifst@rred\else
+                \textsc{\romannumeral#1}.~%
+            \fi
+            #2%
+        }%
+    \endgroup
 }
 
 \newcommand{\scholia}[2]{\textsc{\romannumeral#1}.~#2}
 
-\newcommand{\since}[1]{\unskip\nobreak~[#1]}
+\let\C\relax
+\newcommand{\C}{%
+    \let\using\using@b
+    \ifvmode\else \newline\fi
+    \null
+    \hfill
+}
+
+\newcommand{\E}{%
+    \hfill\null
+    \newline
+}
+
+\newcommand{\FR}{\hbox{}\hfill}
+
+\def\smartbreak{%
+    \unskip
+    \nobreak
+    \hfill
+    \penalty 50
+    \enskip
+    \null
+    \nobreak
+}
+
+\newcommand{\using}{\maybe@st@rred\using@}
+
+\newcommand{\using@}[1]{%
+    \ifst@rred
+        \unskip\space[#1]%
+    \else
+        \using@@{#1}%
+    \fi
+}
+
+\newcommand{\using@a}[1]{% Digital Typography, p. 92
+    \let\using@@\using@a
+    \smartbreak
+    \hfill
+    \hbox{[#1]}%
+    \break
+}
+
+\let\using@@\using@a
+
+\newcommand{\using@b}[1]{% Digital Typography, p. 92
+    \let\using@@\using@a
+    \smartbreak
+    \llap{[#1]}%
+    \break
+}
+
+\newcommand\rpost[1]{\hyperref[post:#1]{Post.~\ref*{post:#1}}}
+\newcommand\rdef[1]{\hyperref[def:#1]{Def.~\ref*{def:#1}}}
+\newcommand\rcn[1]{\hyperref[cn:#1]{\emph{C.N.}~\ref*{cn:#1}}}
 
 % TBD: check for following .
 
@@ -148,6 +216,20 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \RequirePackage{wrapfig}
+
+\newcommand{\infig}[1]{%
+    \ifhmode \vadjust\fi
+    {%
+        \begin{figure}[H]
+            \IfFileExists{#1.mps}{%
+                \includegraphics{#1}%
+            }{%
+                \vdef\@tempa{#1}%
+                \fbox{figure \texttt{\@tempa}}%
+            }
+        \end{figure}
+    }%
+}
 
 \newcommand{\sidefig}[2][r]{%
     \begin{wrapfigure}{#1}{0pt}
@@ -188,25 +270,32 @@
     \addvspace\medskipamount
 }
 
-\renewenvironment{proof}{%
+\renewenvironment{proof}[1][\proofname]{\par
+  \pushQED{\qed}%
+  \normalfont \topsep6\p@\@plus6\p@\relax
+  \trivlist
+  \itemindent\normalparindent
+  \item\ignorespaces
+}{%
+  \popQED\endtrivlist\@endpefalse
+}
+
+\newenvironment{annotations}{%
     \par
+    \addvspace{\bigskipamount}%
+%    \Small
 }{%
     \par
+    \addvspace{\medskipamount}%
 }
 
 \newenvironment{notes}{%
     \par
-%    \Small
-}{%
-    \par
-}
-
-\newenvironment{commentary}{%
-    \par
-    \bigskip
+    \addvspace{\bigskipamount}%
 %    \small
 }{%
     \par
+    \addvspace{\medskipamount}%
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
