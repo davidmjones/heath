@@ -60,19 +60,19 @@
 
 %% Note that these are for 12pt body size.
 
-% \def\@typesizes{%
-%     \do{7}{8}%          \Tiny
-%     \do{8}{10}%         \tiny
-%     \do{9}{11}%         \SMALL (\scriptsize)
-%     \do{10}{12}%        \Small (\footnotesize)
-%     \do{11}{13.5}%      \small
-%     \do{12}{14.5}%      \normalsize
-%     \do{14}{17}%        \large
-%     \do{17}{20}%        \Large
-%     \do{20}{24}%        \LARGE
-%     \do{25}{30}%        \huge
-%     \do{30}{34}%        \Huge
-% }%
+\def\@typesizes{%
+    \or{7}{8}%          \Tiny
+    \or{8}{10}%         \tiny
+    \or{9}{11}%         \SMALL (\scriptsize)
+    \or{10}{12}%        \Small (\footnotesize)
+    \or{11}{13.5}%      \small
+    \or{12}{14.5}%      \normalsize
+    \or{14}{18}%        \large
+    \or{17}{20}%        \Large
+    \or{20}{24}%        \LARGE
+    \or{25}{30}%        \huge
+    \or{30}{34}%        \Huge
+}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%                                                                  %%
@@ -82,24 +82,12 @@
 
 \RequirePackage{xspace}
 
-\newcommand{\clause}{\newline}
-
 \newcommand{\?}[1][]{}
 
 \def\r{\afterassignment\lower@roman\count@}
 \def\lower@roman{\textup{\textsc{\romannumeral\count@}}}
 
 \newcommand{\ibid}{\emph{ibid}.}
-
-\renewcommand{\qedsymbol}{\textsc{q.e.d.\xspace}}
-
-\newcommand{\qefsymbol}{\textsc{q.e.f.\xspace}}
-
-\def\useqed{\def\qedsymbol}
-
-\def\noqed{\useqed{}}
-
-\def\qef{\useqed{\qefsymbol}}
 
 \newcommand{\emend}[2]{#2}
 
@@ -125,62 +113,6 @@
 }
 
 \newcommand{\scholia}[2]{\textsc{\romannumeral#1}.~#2}
-
-\let\C\relax
-\newcommand{\C}{%
-    \let\using\using@b
-    \ifvmode\else \newline\fi
-    \null
-    \hfill
-}
-
-\newcommand{\E}{%
-    \hfill\null
-    \newline
-}
-
-\newcommand{\FR}{\hbox{}\hfill}
-
-\def\smartbreak{%
-    \unskip
-    \nobreak
-    \hfill
-    \penalty 50
-    \enskip
-    \null
-    \nobreak
-}
-
-\newcommand{\using}{\maybe@st@rred\using@}
-
-\newcommand{\using@}[1]{%
-    \ifst@rred
-        \unskip\space[#1]%
-    \else
-        \using@@{#1}%
-    \fi
-}
-
-\newcommand{\using@a}[1]{% Digital Typography, p. 92
-    \let\using@@\using@a
-    \smartbreak
-    \hfill
-    \hbox{[#1]}%
-    \break
-}
-
-\let\using@@\using@a
-
-\newcommand{\using@b}[1]{% Digital Typography, p. 92
-    \let\using@@\using@a
-    \smartbreak
-    \llap{[#1]}%
-    \break
-}
-
-\newcommand\rpost[1]{\hyperref[post:#1]{Post.~\ref*{post:#1}}}
-\newcommand\rdef[1]{\hyperref[def:#1]{Def.~\ref*{def:#1}}}
-\newcommand\rcn[1]{\hyperref[cn:#1]{\emph{C.N.}~\ref*{cn:#1}}}
 
 % TBD: check for following .
 
@@ -251,7 +183,7 @@
 \newtheorem*{lemma*}{Lemma}
 \newtheorem*{porism*}{Porism}
 
-\newcounter{proposition}
+\newcounter{proposition}[part]
 
 \newenvironment{proposition}{%
     \par
@@ -265,25 +197,99 @@
 \newenvironment{statement}{%
     \par
     \itshape
+    \large
 }{%
     \par
     \addvspace\medskipamount
 }
 
-\renewenvironment{proof}[1][\proofname]{\par
-  \pushQED{\qed}%
-  \normalfont \topsep6\p@\@plus6\p@\relax
-  \trivlist
-  \itemindent\normalparindent
-  \item\ignorespaces
+\renewenvironment{proof}[1][\proofname]{%
+    \par
+    \pushQED{\qed}%
+    \normalfont
+    \large
 }{%
-  \popQED\endtrivlist\@endpefalse
+    \popQED
+    \@endpefalse
 }
+
+\renewcommand{\qedsymbol}{\textsc{q.e.d.\xspace}}
+
+\newcommand{\qefsymbol}{\textsc{q.e.f.\xspace}}
+
+\def\useqed{\def\qedsymbol}
+
+\def\noqed{\useqed{}}
+
+\def\qef{\useqed{\qefsymbol}}
+
+\newcommand{\0}{\par\noindent\ignorespaces}
+
+\newcommand{\1}{%
+    \par
+    \leftskip3\normalparindent
+    \parindent-\normalparindent
+    \ignorespaces
+}
+
+\newcommand{\restore@par}{%
+    \let\using\using@a
+    \parindent\normalparindent
+    \parfillskip\@flushglue
+    \leftskip\z@skip
+    \rightskip\z@skip
+}
+
+\let\C\relax
+
+\newcommand{\C}{%
+    \let\using\using@b
+    \par
+    \leftskip\@flushglue
+    \parfillskip\@flushglue
+    \parindent\@flushglue
+}
+
+\newcommand{\E}{%
+    \par
+    \restore@par
+}
+
+\newcommand{\using}{\maybe@st@rred\using@}
+
+\newcommand{\using@}[1]{%
+    \ifst@rred
+        \unskip\space[#1]%
+    \else
+        \using@@{#1}%
+    \fi
+}
+
+\newcommand{\using@a}[1]{%
+    \let\using@@\using@a
+    \hskip 1em plus 1fil
+    \hbox{[#1]}%
+    \parfillskip\z@
+    \E
+}
+
+\let\using@@\using@a
+
+\newcommand{\using@b}[1]{% Digital Typography, p. 92
+    \let\using@@\using@a
+    \hfil
+    \llap{[#1]}%
+    \parfillskip\z@
+    \E
+}
+
+\newcommand\rpost[1]{\hyperref[post:#1]{Post.~\ref*{post:#1}}}
+\newcommand\rdef[1]{\hyperref[def:#1]{Def.~\ref*{def:#1}}}
+\newcommand\rcn[1]{\hyperref[cn:#1]{\emph{C.N.}~\ref*{cn:#1}}}
 
 \newenvironment{annotations}{%
     \par
-    \addvspace{\bigskipamount}%
-%    \Small
+    \addvspace{\medskipamount}%
 }{%
     \par
     \addvspace{\medskipamount}%
@@ -291,8 +297,7 @@
 
 \newenvironment{notes}{%
     \par
-    \addvspace{\bigskipamount}%
-%    \small
+    \addvspace{\medskipamount}%
 }{%
     \par
     \addvspace{\medskipamount}%

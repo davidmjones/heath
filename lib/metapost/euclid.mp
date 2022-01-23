@@ -10,7 +10,7 @@ else:
   fi
 fi
 
-defaultfont := "cmmi5";
+defaultfont := "cmmi7";
 labeloffset := 1.5;
 
 boolean drawDots;

@@ -5,5 +5,8 @@ export TEXINPUTS=.:../../lib/tex:../eps:${SRC}:
 all:
 	xelatex $(SRC)/elements.tex
 
+test:
+	xelatex $(SRC)/test.tex
+
 clean:
-	rm elements.*
+	rm *.pdf *.log *.aux *.toc *.out
