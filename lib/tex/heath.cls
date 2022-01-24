@@ -84,14 +84,28 @@
 
 \newcommand{\?}[1][]{}
 
-\def\r{\afterassignment\lower@roman\count@}
-\def\lower@roman{\textup{\textsc{\romannumeral\count@}}}
+\newcount\roman@count@
 
-\newcommand{\ibid}{\emph{ibid}.}
+\def\r{\afterassignment\lower@roman\roman@count@}
+
+\def\lower@roman{\textup{\textsc{\romannumeral\roman@count@}}}
 
 \newcommand{\emend}[2]{#2}
 
-\newcommand{\book}[1]{\textsc{#1}\@.}
+\newcommand{\smart@period}{%
+    \futurelet\@let@token\@smart@period
+}
+
+\newcommand{\@smart@period}{%
+    \ifx\@let@token.\else.\@\fi
+}
+
+\newcommand{\bc}{\textsc{b.c}\smart@period}
+\newcommand{\ad}{\textsc{a.d}\smart@period}
+
+\newcommand{\book}[1]{\textsc{#1}\smart@period}
+
+\newcommand{\ibid}{\emph{ibid}\smart@period}
 
 \newif\ifst@rred
 
@@ -113,11 +127,6 @@
 }
 
 \newcommand{\scholia}[2]{\textsc{\romannumeral#1}.~#2}
-
-% TBD: check for following .
-
-\newcommand{\bc}{\textsc{b.c.}}
-\newcommand{\ad}{\@ifstar{\textsc{a.d\@.}}{\textsc{a.d.}}}
 
 \DeclareMathOperator{\arc}{arc}
 
@@ -188,7 +197,9 @@
 \newenvironment{proposition}{%
     \par
     \refstepcounter{proposition}%
-    \section*{Proposition~\theproposition}
+    \@startsection{section}{1}%
+        \z@{.7\linespacing\@plus\linespacing}{.5\linespacing}%
+        {\normalfont\large\scshape\centering}*{Proposition~\theproposition}
 }{%
     \par
     \addvspace\medskipamount
@@ -233,7 +244,7 @@
 }
 
 \newcommand{\restore@par}{%
-    \let\using\using@a
+    \let\using@@\using@a
     \parindent\normalparindent
     \parfillskip\@flushglue
     \leftskip\z@skip
@@ -243,7 +254,7 @@
 \let\C\relax
 
 \newcommand{\C}{%
-    \let\using\using@b
+    \let\using@@\using@b
     \par
     \leftskip\@flushglue
     \parfillskip\@flushglue
@@ -253,6 +264,16 @@
 \newcommand{\E}{%
     \par
     \restore@par
+}
+
+\def\smartbreak{%
+    \unskip
+    \nobreak
+    \hfill
+    \penalty 50
+    \enskip
+    \null
+    \nobreak
 }
 
 \newcommand{\using}{\maybe@st@rred\using@}
@@ -275,7 +296,7 @@
 
 \let\using@@\using@a
 
-\newcommand{\using@b}[1]{% Digital Typography, p. 92
+\newcommand{\using@b}[1]{%
     \let\using@@\using@a
     \hfil
     \llap{[#1]}%
