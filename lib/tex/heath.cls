@@ -288,7 +288,7 @@
 
 \newcommand{\using@a}[1]{%
     \let\using@@\using@a
-    \hskip 1em plus 1fil
+    \hskip 1em plus 1fil minus .7em 
     \hbox{[#1]}%
     \parfillskip\z@
     \E
