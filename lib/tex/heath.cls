@@ -103,6 +103,9 @@
 \newcommand{\bc}{\textsc{b.c}\smart@period}
 \newcommand{\ad}{\textsc{a.d}\smart@period}
 
+\newcommand{\ms}{\textsc{ms}\smart@period}
+\newcommand{\mss}{\textsc{mss}\smart@period}
+
 \newcommand{\book}[1]{\textsc{#1}\smart@period}
 
 \newcommand{\ibid}{\emph{ibid}\smart@period}
