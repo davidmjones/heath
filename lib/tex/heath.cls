@@ -237,6 +237,14 @@
 
 \def\qef{\useqed{\qefsymbol}}
 
+\newcommand{\proofbreak}{\medbreak}
+
+\newcommand{\proofrule}{%
+    \smallbreak
+    \centerline{\rule{10pc}{1pt}}
+    \smallbreak
+}
+
 \newcommand{\0}{\par\noindent\ignorespaces}
 
 \newcommand{\1}{%
