@@ -1,7 +1,7 @@
 input euclid;
 
 beginfig(1)
-  u = 36bp;
+  u = 54bp;
 
   pair A, B, C;
 
@@ -26,7 +26,7 @@ beginfig(1)
   pair G;
 
   G = .5[D, E];
-  G := G shifted 2down;
+  G := G shifted 4down;
 
   draw D..G..E;
 

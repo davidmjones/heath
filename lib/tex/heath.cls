@@ -132,6 +132,7 @@
 \newcommand{\scholia}[2]{\textsc{\romannumeral#1}.~#2}
 
 \DeclareMathOperator{\arc}{arc}
+\DeclareMathOperator{\rect}{rect.}
 
 \newcommand{\byline}[2]{%
 \begin{flushright}
@@ -251,6 +252,12 @@
     \par
     \leftskip3\normalparindent
     \parindent-\normalparindent
+    \ignorespaces
+}
+
+\newcommand{\2}{%
+    \par
+    \parindent2\normalparindent
     \ignorespaces
 }
 

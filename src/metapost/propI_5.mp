@@ -1,7 +1,7 @@
 input euclid;
 
 beginfig(1)
-  u = 18bp;
+  u = 36bp;
 
   pair A, B, C;
 

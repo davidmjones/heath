@@ -3,6 +3,7 @@ SRC=../../src/latex
 export TEXINPUTS=.:../../lib/tex:../eps:${SRC}:
 
 all:
+	(cd ../eps; make)
 	xelatex $(SRC)/elements.tex
 
 test:

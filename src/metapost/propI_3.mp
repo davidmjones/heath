@@ -3,8 +3,8 @@ input euclid;
 beginfig(1)
   numeric ab, c;
 
-  ab = 30;
-  c  = 20;
+  ab = 90;
+  c  = 54;
 
   pair A, B, C, D, E, F, G, H, K, L;
 
