@@ -154,6 +154,8 @@
 
 \AtBeginDocument{\renewcommand{\pageref}[1]{[[#1]]}}
 
+\newcommand{\extract}{\textbf}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%                                                                  %%
 %%                             FIGURES                              %%
