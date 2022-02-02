@@ -27,6 +27,8 @@
 
 \RequirePackage{unicode-math}[2015/09/24]
 
+\AtBeginDocument{\let\triangle\vartriangle}
+
 %TODO: Should always choose upright
 \newfontfamily{\@greek}{Brill}
 \newcommand{\greek}[1]{\@greek{\textup{#1}}}
@@ -240,6 +242,8 @@
 
 \def\qef{\useqed{\qefsymbol}}
 
+\def\qefhere{\qef\qedhere}
+
 \newcommand{\proofbreak}{\medbreak}
 
 \newcommand{\proofrule}{%
@@ -298,28 +302,28 @@
 
 \newcommand{\using}{\maybe@st@rred\using@}
 
-\newcommand{\using@}[1]{%
+\newcommand{\using@}[2][]{%
     \ifst@rred
-        \unskip\space[#1]%
+        \unskip\space[#2]#1%
     \else
-        \using@@{#1}%
+        \using@@{#1}{#2}%
     \fi
 }
 
-\newcommand{\using@a}[1]{%
+\newcommand{\using@a}[2]{%
     \let\using@@\using@a
     \hskip 1em plus 1fil minus .7em 
-    \hbox{[#1]}%
+    \hbox{[#2]#1}%
     \parfillskip\z@
     \E
 }
 
 \let\using@@\using@a
 
-\newcommand{\using@b}[1]{%
+\newcommand{\using@b}[2]{%
     \let\using@@\using@a
     \hfil
-    \llap{[#1]}%
+    \llap{[#2]#1}%
     \parfillskip\z@
     \E
 }
