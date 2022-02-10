@@ -133,6 +133,9 @@
 
 \newcommand{\scholia}[2]{\textsc{\romannumeral#1}.~#2}
 
+\newcommand{\gel}{\mathrel{>=<}}
+\newcommand{\leg}{\mathrel{<=>}}
+
 \DeclareMathOperator{\arc}{arc}
 \DeclareMathOperator{\rect}{rect.}
 
