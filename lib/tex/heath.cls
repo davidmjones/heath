@@ -108,7 +108,7 @@
 \newcommand{\ms}{\textsc{ms}\smart@period}
 \newcommand{\mss}{\textsc{mss}\smart@period}
 
-\newcommand{\book}[1]{\textsc{#1}\smart@period}
+\newcommand{\book}[1]{\textsc{\romannumeral#1}\smart@period}
 
 \newcommand{\ibid}{\emph{ibid}\smart@period}
 
@@ -138,6 +138,7 @@
 
 \DeclareMathOperator{\arc}{arc}
 \DeclareMathOperator{\rect}{rect.}
+\DeclareMathOperator{\fig}{fig.}
 
 \newcommand{\byline}[2]{%
 \begin{flushright}
@@ -158,6 +159,7 @@
 }
 
 \AtBeginDocument{\renewcommand{\pageref}[1]{[[#1]]}}
+\newcommand{\lineref}[1]{[[#1]]}
 
 \newcommand{\extract}{\textbf}
 
@@ -257,16 +259,22 @@
 
 \newcommand{\0}{\par\noindent\ignorespaces}
 
-\newcommand{\1}{%
+\newcommand{\1}{
     \par
-    \leftskip3\normalparindent
-    \parindent-\normalparindent
+    \indent
     \ignorespaces
 }
 
 \newcommand{\2}{%
     \par
     \parindent2\normalparindent
+    \ignorespaces
+}
+
+\newcommand{\3}{%
+    \par
+    \leftskip3\normalparindent
+    \parindent-\normalparindent
     \ignorespaces
 }
 
@@ -291,6 +299,7 @@
 \newcommand{\E}{%
     \par
     \restore@par
+    \ignorespaces
 }
 
 \def\smartbreak{%
@@ -331,9 +340,29 @@
     \E
 }
 
-\newcommand\rpost[1]{\hyperref[post:#1]{Post.~\ref*{post:#1}}}
-\newcommand\rdef[1]{\hyperref[def:#1]{Def.~\ref*{def:#1}}}
 \newcommand\rcn[1]{\hyperref[cn:#1]{\emph{C.N.}~\ref*{cn:#1}}}
+
+\newcommand\rpost{\maybe@st@rred\@rpost}
+
+\newcommand\@rpost[1]{%
+    \hyperref[post:#1]{%
+        \ifst@rred
+            \book{1}\space
+        \fi
+        Post.~\ref*{post:#1}%
+    }%
+}
+
+\newcommand\rdef{\maybe@st@rred\@rdef}
+
+\newcommand\@rdef[2]{%
+    \hyperref[def:\@Roman#1_#2]{%
+        \ifst@rred
+            \book{#1}\space
+        \fi
+        Def.~\ref*{def:\@Roman#1_#2}%
+    }%
+}
 
 \newenvironment{annotations}{%
     \par

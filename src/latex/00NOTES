@@ -1,16 +1,16 @@
-I:    48
-II:   14
-III:  37
-IV:   16
-V:    25
-VI:   33
-VII:  39
-VIII: 27
-IX:   36
-X:   115
-XI:   39
-XII:  18
-XII:  18
+I:    48        48
+II:   14        62
+III:  37        99
+IV:   16       115
+V:    25       140
+VI:   33       173
+VII:  39       212
+VIII: 27       239
+IX:   36       275
+X:   115       390
+XI:   39       429
+XII:  18       447
+XII:  18       465
 
 * primes in metapost graphics are too big
 
